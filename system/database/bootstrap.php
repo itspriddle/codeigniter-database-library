@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php //  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
@@ -14,6 +14,10 @@
  */
 
 // ------------------------------------------------------------------------
+
+define('EXT', '.php');
+define('BASEPATH', realpath(dirname(__FILE__).'/../').'/');
+
 
 /**
  * System Front Controller
@@ -35,14 +39,14 @@ define('CI_VERSION',	'1.7.2');
  *  Load the global functions
  * ------------------------------------------------------
  */
-require(BASEPATH.'codeigniter/Common'.EXT);
+require('codeigniter/Common'.EXT);
 
 /*
  * ------------------------------------------------------
  *  Load the compatibility override functions
  * ------------------------------------------------------
  */
-require(BASEPATH.'codeigniter/Compat'.EXT);
+require('codeigniter/Compat'.EXT);
 
 /*
  * ------------------------------------------------------
@@ -65,14 +69,6 @@ if ( ! is_php('5.3'))
 
 /*
  * ------------------------------------------------------
- *  Start the timer... tick tock tick tock...
- * ------------------------------------------------------
- */
-
-$BM =& load_class('Benchmark');
-
-/*
- * ------------------------------------------------------
  *  Instantiate the base classes
  * ------------------------------------------------------
  */
@@ -81,11 +77,11 @@ $CFG =& load_class('Config');
 if ( ! is_php('5.0.0'))
 {
 	load_class('Loader', FALSE);
-	require(BASEPATH.'codeigniter/Base4'.EXT);
+	require('codeigniter/Base4'.EXT);
 }
 else
 {
-	require(BASEPATH.'codeigniter/Base5'.EXT);
+	require('codeigniter/Base5'.EXT);
 }
 
 require_once(dirname(__FILE__).'/DB.php');
@@ -95,14 +91,6 @@ function &load_database($params = '', $active_record_override = FALSE)
 	$database =& DB($params, $active_record_override);
 	return $database;
 }
-
-
-
-
-// if (class_exists('CI_DB') AND isset($CI->db))
-// {
-// 	$CI->db->close();
-// }
 
 
 /* End of file CodeIgniter.php */

@@ -29,7 +29,7 @@ function is_php($version = '5.0.0')
 {
 	static $_is_php;
 	$version = (string)$version;
-	
+
 	if ( ! isset($_is_php[$version]))
 	{
 		$_is_php[$version] = (version_compare(PHP_VERSION, $version) < 0) ? FALSE : TRUE;
@@ -43,15 +43,15 @@ function is_php($version = '5.0.0')
 /**
  * Tests for file writability
  *
- * is_writable() returns TRUE on Windows servers when you really can't write to 
+ * is_writable() returns TRUE on Windows servers when you really can't write to
  * the file, based on the read-only attribute.  is_writable() is also unreliable
- * on Unix servers if safe_mode is on. 
+ * on Unix servers if safe_mode is on.
  *
  * @access	private
  * @return	void
  */
 function is_really_writable($file)
-{	
+{
 	// If we're on a Unix server with safe_mode off we call is_writable
 	if (DIRECTORY_SEPARATOR == '/' AND @ini_get("safe_mode") == FALSE)
 	{
@@ -108,11 +108,10 @@ function &load_class($class, $instantiate = TRUE)
 	}
 
 	// If the requested class does not exist in the application/libraries
-	// folder we'll load the native class from the system/libraries folder.	
+	// folder we'll load the native class from the system/libraries folder.
 	if (file_exists(APPPATH.'libraries/'.config_item('subclass_prefix').$class.EXT))
 	{
-		require(BASEPATH.'libraries/'.$class.EXT);
-		require(APPPATH.'libraries/'.config_item('subclass_prefix').$class.EXT);
+		require(BASEPATH.'database/libraries/'.$class.EXT);
 		$is_subclass = TRUE;
 	}
 	else
@@ -124,7 +123,7 @@ function &load_class($class, $instantiate = TRUE)
 		}
 		else
 		{
-			require(BASEPATH.'libraries/'.$class.EXT);
+			require(BASEPATH.'database/libraries/'.$class.EXT);
 			$is_subclass = FALSE;
 		}
 	}
@@ -156,7 +155,7 @@ function &load_class($class, $instantiate = TRUE)
  * Required to retain PHP 4 compatibility and also not make PHP 5.3 cry.
  *
  * Use: $obj =& instantiate_class(new Foo());
- * 
+ *
  * @access	public
  * @param	object
  * @return	object
@@ -270,7 +269,7 @@ function show_404($page = '')
 function log_message($level = 'error', $message, $php_error = FALSE)
 {
 	static $LOG;
-	
+
 	$config =& get_config();
 	if ($config['log_threshold'] == 0)
 	{
@@ -287,7 +286,7 @@ function log_message($level = 'error', $message, $php_error = FALSE)
  *
  * @access	public
  * @param	int 	the status code
- * @param	string	
+ * @param	string
  * @return	void
  */
 function set_status_header($code = 200, $text = '')
@@ -340,15 +339,15 @@ function set_status_header($code = 200, $text = '')
 	}
 
 	if (isset($stati[$code]) AND $text == '')
-	{				
+	{
 		$text = $stati[$code];
 	}
-	
+
 	if ($text == '')
 	{
 		show_error('No status text available.  Please check your status code number or supply your own message text.', 500);
 	}
-	
+
 	$server_protocol = (isset($_SERVER['SERVER_PROTOCOL'])) ? $_SERVER['SERVER_PROTOCOL'] : FALSE;
 
 	if (substr(php_sapi_name(), 0, 3) == 'cgi')
@@ -381,14 +380,14 @@ function set_status_header($code = 200, $text = '')
 * @return	void
 */
 function _exception_handler($severity, $message, $filepath, $line)
-{	
+{
 	 // We don't bother with "strict" notices since they will fill up
 	 // the log file with information that isn't normally very
 	 // helpful.  For example, if you are running PHP 5 and you
 	 // use version 4 style class functions (without prefixes
 	 // like "public", "private", etc.) you'll get notices telling
 	 // you that these have been deprecated.
-	
+
 	if ($severity == E_STRICT)
 	{
 		return;
@@ -399,12 +398,12 @@ function _exception_handler($severity, $message, $filepath, $line)
 	// Should we display the error?
 	// We'll get the current error_reporting level and add its bits
 	// with the severity bits to find out.
-	
+
 	if (($severity & error_reporting()) == $severity)
 	{
 		$error->show_php_error($severity, $message, $filepath, $line);
 	}
-	
+
 	// Should we log the error?  No?  We're done...
 	$config =& get_config();
 	if ($config['log_threshold'] == 0)
