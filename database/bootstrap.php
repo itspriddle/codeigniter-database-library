@@ -1,4 +1,4 @@
-<?php //  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
 /**
  * CodeIgniter
  *
@@ -17,19 +17,6 @@
 
 define('EXT', '.php');
 define('BASEPATH', realpath(dirname(__FILE__).'/../').'/');
-
-
-/**
- * System Front Controller
- *
- * Loads the base classes and executes the request.
- *
- * @package		CodeIgniter
- * @subpackage	codeigniter
- * @category	Front-controller
- * @author		ExpressionEngine Dev Team
- * @link		http://codeigniter.com/user_guide/
- */
 
 // CI Version
 define('CI_VERSION',	'1.7.2');
@@ -94,4 +81,4 @@ function &load_database($params = '', $active_record_override = FALSE)
 
 
 /* End of file CodeIgniter.php */
-/* Location: ./system/codeigniter/CodeIgniter.php */
+/* Location: ./system/database/bootstrap.php */
