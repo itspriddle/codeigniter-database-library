@@ -9,7 +9,7 @@ Usage
 
     <?php
 
-    require_once('database/bootstrap.php');
+    require_once('bootstrap.php');
 
 
     $db =& load_database("mysql://root@localhost/my_database");
