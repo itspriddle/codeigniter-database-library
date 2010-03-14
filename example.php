@@ -1,5 +1,4 @@
 <?php
-define('HOMEDIR', realpath(dirname(__FILE__)).'/');
 
 require_once('database/bootstrap.php');
 
