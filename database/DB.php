@@ -24,29 +24,7 @@
  */
 function &DB($params = '', $active_record_override = FALSE)
 {
-	// Load the DB config file if a DSN string wasn't passed
-	if (is_string($params) AND strpos($params, '://') === FALSE)
-	{
-		include(APPPATH.'config/database'.EXT);
-
-		if ( ! isset($db) OR count($db) == 0)
-		{
-			show_error('No database connection settings were found in the database config file.');
-		}
-
-		if ($params != '')
-		{
-			$active_group = $params;
-		}
-
-		if ( ! isset($active_group) OR ! isset($db[$active_group]))
-		{
-			show_error('You have specified an invalid database connection group.');
-		}
-
-		$params = $db[$active_group];
-	}
-	elseif (is_string($params))
+	if (is_string($params))
 	{
 
 		/* parse the URL from the DSN string
