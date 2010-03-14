@@ -111,7 +111,7 @@ function &load_class($class, $instantiate = TRUE)
 	// folder we'll load the native class from the system/libraries folder.
 	if (file_exists(APPPATH.'libraries/'.config_item('subclass_prefix').$class.EXT))
 	{
-		require(BASEPATH.'database/libraries/'.$class.EXT);
+		require(BASEPATH.'libraries/'.$class.EXT);
 		$is_subclass = TRUE;
 	}
 	else
@@ -123,7 +123,7 @@ function &load_class($class, $instantiate = TRUE)
 		}
 		else
 		{
-			require(BASEPATH.'database/libraries/'.$class.EXT);
+			require(BASEPATH.'libraries/'.$class.EXT);
 			$is_subclass = FALSE;
 		}
 	}

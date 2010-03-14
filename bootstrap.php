@@ -16,8 +16,8 @@
 // ------------------------------------------------------------------------
 
 define('EXT', '.php');
-define('BASEPATH', realpath(dirname(__FILE__).'/../').'/');
-define('APPPATH', BASEPATH.'database/');
+define('BASEPATH', realpath(dirname(__FILE__)).'/');
+define('APPPATH', BASEPATH);
 
 // CI Version
 define('CI_VERSION',	'1.7.2');

@@ -105,7 +105,7 @@ class CI_Exceptions {
 			ob_end_flush();
 		}
 		ob_start();
-		include(BASEPATH.'database/errors/'.$template.EXT);
+		include(BASEPATH.'errors/'.$template.EXT);
 		$buffer = ob_get_contents();
 		ob_end_clean();
 		return $buffer;
@@ -141,7 +141,7 @@ class CI_Exceptions {
 			ob_end_flush();
 		}
 		ob_start();
-		include(BASEPATH.'database/errors/error_php'.EXT);
+		include(BASEPATH.'errors/error_php'.EXT);
 		$buffer = ob_get_contents();
 		ob_end_clean();
 		echo $buffer;
