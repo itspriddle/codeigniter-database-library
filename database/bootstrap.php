@@ -40,7 +40,7 @@ require('codeigniter/Compat'.EXT);
  *  Load the framework constants
  * ------------------------------------------------------
  */
-require(APPPATH.'config/constants'.EXT);
+require('codeigniter/Constants'.EXT);
 
 /*
  * ------------------------------------------------------
