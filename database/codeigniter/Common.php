@@ -240,24 +240,6 @@ function show_error($message, $status_code = 500)
 
 
 /**
-* 404 Page Handler
-*
-* This function is similar to the show_error() function above
-* However, instead of the standard error template it displays
-* 404 errors.
-*
-* @access	public
-* @return	void
-*/
-function show_404($page = '')
-{
-	$error =& load_class('Exceptions');
-	$error->show_404($page);
-	exit;
-}
-
-
-/**
 * Error Logging Interface
 *
 * We use this as a simple mechanism to access the logging
