@@ -1,17 +1,16 @@
-CodeIgniter Database Library
-===
+# CodeIgniter Database Library
+
 This is an abstraction of CodeIgniter's [database](http://codeigniter.com/user_guide/database/index.html) library.
 Why? I need a DB library for server side scripts, and I hate ADODB's syntax.
 Manually escaping queries and generating results is for n00bs.
 
-Usage
----
+## Usage
 
     <?php
 
     require_once('bootstrap.php');
 
-    $db =& load_database("mysql://root@localhost/my_database");
+    $db =& load_database("mysql://root@127.0.0.1/my_database");
 
     $query = $db->query("select * from users where login = ? limit 1", "joshua");
 
@@ -29,14 +28,13 @@ Usage
     }
 
 
-With Active Record
----
+## With Active Record
 
     <?php
 
     require_once('bootstrap.php');
 
-    $db =& load_database("mysql://root@localhost/my_database", TRUE);
+    $db =& load_database("mysql://root@127.0.0.1/my_database", TRUE);
 
     $db->select('*');
     $db->from('users');
@@ -55,4 +53,13 @@ With Active Record
       ["created_at"]=>
       string(19) "2010-03-14 11:03:57"
     }
+
+
+## Notes
+
+See the notes under example 3 for PHP's 
+[mysql_connect](http://php.net/manual/en/function.mysql-connect.php) function
+regarding sockets. If you have a non-standard MySQL installation, (eg: you are
+using OS X and [homebrew](http://github.com/mxcl/homebrew)) it's probably
+easier to use `127.0.0.1` rather than `localhost` as your host.
 
