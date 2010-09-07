@@ -4,11 +4,18 @@ This is an abstraction of CodeIgniter's [database](http://codeigniter.com/user_g
 Why? I need a DB library for server side scripts, and I hate ADODB's syntax.
 Manually escaping queries and generating results is for n00bs.
 
+## Installation
+
+    cd my_project
+    mkdir includes
+    cd includes
+    git clone git://github.com/itspriddle/codeigniter-database-library.git database
+
 ## Usage
 
-    <?php
+    <?php // ~/code/my_project/test.php
 
-    require_once('bootstrap.php');
+    require_once(dirname(__FILE__).'/includes/database/init.php');
 
     $db =& load_database("mysql://root@127.0.0.1/my_database");
 
@@ -30,9 +37,9 @@ Manually escaping queries and generating results is for n00bs.
 
 ## With Active Record
 
-    <?php
+    <?php // ~/code/my_project/test.php
 
-    require_once('bootstrap.php');
+    require_once(dirname(__FILE__).'/includes/database/init.php');
 
     $db =& load_database("mysql://root@127.0.0.1/my_database", TRUE);
 
